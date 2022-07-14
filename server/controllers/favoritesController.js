@@ -1,13 +1,26 @@
 const Favorites = require("../models/favoritesModel");
+const User = require("../models/userModel");
 
 const createFavorite = async (req, res) => {
   const { fromCurrency, toCurrency } = req.body;
-  const user = req.user;
+  const user = req.user.id;
+
+  //check if favorite already exists
+  const favoriteExists = await Favorites.findOne({
+    user: user,
+    fromCurrency,
+    toCurrency,
+  });
+
+  if (favoriteExists) {
+    return res.status(400).json({ msg: "Favorite already exists" });
+  }
   const newFavorite = await Favorites.create({
     user,
     fromCurrency,
     toCurrency,
   });
+  //send favorite without user Object
   res.status(201).json(newFavorite);
 };
 
@@ -18,8 +31,23 @@ const getFavorites = async (req, res) => {
 };
 
 const deleteFavorite = async (req, res) => {
-  const { id } = req.params;
-  const deletedFavorite = await Favorites.findByIdAndDelete(id);
+  const user = await User.findById(req.user._id);
+  if (!user) {
+    return res.status(404).json({ msg: "User not found" });
+  }
+
+  //check if favorite is in user's favorites
+  const favorite = await Favorites.findById(req.params.id);
+  if (!favorite) {
+    return res.status(404).json({ msg: "Favorite not found" });
+  }
+  if (favorite.user.toString() !== user._id.toString()) {
+    return res.status(401).json({ msg: "Not authorized" });
+  }
+
+  //delete favorite
+  const deletedFavorite = await Favorites.deleteOne({ _id: req.params.id });
+
   res.status(200).json(deletedFavorite);
 };
 

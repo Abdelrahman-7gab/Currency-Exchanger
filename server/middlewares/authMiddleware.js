@@ -10,7 +10,8 @@ const protect = async (req, res, next) => {
         return res.status(401).json({ msg: "You are not logged in!" });
     }
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await User.findById(decoded.id);
+    //get user without password
+    const user = await User.findById(decoded.id, { password: 0 });
     if (!user) {
         return res.status(401).json({ msg: "The user doesn't exist anymore" });
     }
