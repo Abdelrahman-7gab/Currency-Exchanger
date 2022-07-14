@@ -35,4 +35,6 @@
 .status{
     color:black;
     margin: 0 auto;
+    display: grid;
+    justify-items: center;
 }

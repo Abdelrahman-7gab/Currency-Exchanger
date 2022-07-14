@@ -16,7 +16,7 @@ export const options = {
   plugins: {
     title: {
       display: true,
-      text: "Converstion Rates per day for the last 30 days",
+      text: "Converstion Rates per day for the last month",
     },
   },
 };

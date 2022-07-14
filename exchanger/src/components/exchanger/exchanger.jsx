@@ -6,7 +6,7 @@ import { currencies } from "./currencies";
 import { useState } from "react";
 import { useEffect } from "react";
 import apiService from "../../services/APIservice";
-import SwitchAccessShortcutIcon from "@mui/icons-material/SwitchAccessShortcut";
+import SwapVertIcon from '@mui/icons-material/SwapVert';
 import Graph from "../Graph/Graph";
 
 function Exchanger() {
@@ -80,7 +80,7 @@ function Exchanger() {
           onClick={switchFromAndTo}
           style={{ margin: "0 auto", cursor: "pointer" }}
         >
-          <SwitchAccessShortcutIcon style={{ color: "black" }} />
+           <SwapVertIcon style={{ color: "black" }} />
         </div>
         <Autocomplete
           id="To"
