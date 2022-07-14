@@ -8,4 +8,31 @@
     display: flex;
     flex-direction: column;
     row-gap: 25px;
+    box-shadow: -12px 16px 35px 0px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: -12px 16px 35px 0px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: -12px 16px 35px 0px rgba(0, 0, 0, 0.6);
+}
+
+.inputs-container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+}
+
+.from-container{
+    display: grid;
+    grid-template-columns: 20% auto;
+}
+
+.conversionRate{
+    font-size: 1.3em;
+    font-weight: bold;
+    display: grid;
+    align-content: center;
+}
+
+.status{
+    color:black;
+    margin: 0 auto;
 }
