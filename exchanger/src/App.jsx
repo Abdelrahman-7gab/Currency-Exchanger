@@ -1,16 +1,16 @@
 import './App.css'
-import header from './components/header/header'
-import exchanger from './components/exchanger/exchanger'
-import footer from './components/footer/footer'
+import Header from './components/Header/Header'
+import Exchanger from './components/Exchanger/Exchanger'
+import Footer from './components/Footer/Footer'
 
 function App() {
   return (
     <div className="App">
-      {header()}
+      <Header />
       <div className="main">
-      {exchanger()}
+        <Exchanger />
       </div>
-      {footer()}
+      <Footer />
     </div>
   )
 }

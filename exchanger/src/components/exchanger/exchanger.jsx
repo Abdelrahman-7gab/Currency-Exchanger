@@ -7,29 +7,33 @@ import { useState } from "react";
 import { useEffect } from "react";
 import apiService from "../../services/APIservice";
 import SwitchAccessShortcutIcon from "@mui/icons-material/SwitchAccessShortcut";
+import Graph from "../Graph/Graph";
 
-function exchanger() {
+function Exchanger() {
   const [fromCurrency, setFromCurrency] = useState("");
   const [toCurrency, setToCurrency] = useState("");
   const [fromAmount, setFromAmount] = useState(1);
   const [conversionRate, setConversionRate] = useState(0);
+  const [monthRates, setMonthRates] = useState({});
 
   useEffect(() => {
     const getConversionRate = async () => {
+      const toCurr3Letters = toCurrency.substring(0, 3);
+      const fromCurr3Letters = fromCurrency.substring(0, 3);
+
       if (fromCurrency !== "" && toCurrency != "") {
-        const conversionRate = await apiService.getConversionRate(
-          fromCurrency.substring(0, 3),
-          toCurrency.substring(0, 3)
+        const response = await apiService.getConversionRate(
+          fromCurr3Letters,
+          toCurr3Letters
         );
-        setConversionRate(conversionRate.data.info.rate);
+        setMonthRates(response.data.rates);
+        setConversionRate(
+          response.data.rates[response.data.end_date][toCurr3Letters]
+        );
       }
     };
     getConversionRate();
   }, [fromCurrency, toCurrency]);
-
-  const changeAmount = (event) => {
-    setFromAmount(event.target.value);
-  };
 
   const switchFromAndTo = () => {
     const temp = fromCurrency;
@@ -50,7 +54,7 @@ function exchanger() {
             value={fromAmount}
             type="number"
             InputProps={{
-              inputProps: { min: 0 },
+              inputProps: { min: 1 },
             }}
             onChange={(e) => setFromAmount(e.target.value)}
           />
@@ -97,17 +101,22 @@ function exchanger() {
         fromAmount > 0 &&
         fromCurrency != "" &&
         toCurrency != "" && (
-          <div className="status">
-            {fromAmount} {fromCurrency.substring(5, fromCurrency.length - 1)} ={" "}
-            <span className="conversionRate">
-              {" "}
-              {conversionRate * fromAmount}{" "}
-            </span>{" "}
-            {toCurrency.substring(5, toCurrency.length - 1)}
+          <div className="info">
+            <div className="status">
+              {fromAmount} {fromCurrency.substring(5, fromCurrency.length - 1)}{" "}
+              ={" "}
+              <span className="conversionRate">
+                {" "}
+                {conversionRate * fromAmount}{" "}
+              </span>{" "}
+              {toCurrency.substring(5, toCurrency.length - 1)}
+            </div>
+
+            <Graph monthRates={monthRates} />
           </div>
         )}
     </div>
   );
 }
 
-export default exchanger;
+export default Exchanger;
