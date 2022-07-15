@@ -48,6 +48,7 @@ const loginUser = (req, res) => {
           res.json({
             success: true,
             token: "Bearer " + generateToken(user),
+            username: user.name,
           });
         } else {
           return res.status(400).json({ message: "Password incorrect." });

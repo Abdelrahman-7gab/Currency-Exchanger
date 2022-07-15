@@ -1,4 +1,3 @@
-import React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -20,7 +19,7 @@ const Modalstyle = {
   p: 4,
 };
 
-function LoginModal({ open, handleClose }) {
+function LoginModal({ open, handleClose,openRegisterModal }) {
   const [statusMessage, setStatusMessage] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,8 +27,11 @@ function LoginModal({ open, handleClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await apiService.LoginUser(email, password);
-      setStatusMessage("Login successful");
+      const res =await apiService.LoginUser(email, password);
+    //set the token in the local storage
+      localStorage.setItem("user", JSON.stringify(res.data));
+      setStatusMessage("");
+      handleClose();
     } catch (err) {
       console.log(err);
       setStatusMessage(err.response.data.message);
@@ -62,6 +64,9 @@ function LoginModal({ open, handleClose }) {
             onChange={(e) => setPassword(e.target.value)}
           />
 
+          <Typography>
+            <Button onClick={openRegisterModal}>Create a new Account</Button>
+          </Typography>
           <div className="buttons-container">
             <Button
               variant="contained"
@@ -81,7 +86,7 @@ function LoginModal({ open, handleClose }) {
             </Button>
           </div>
         </form>
-        <Typography>{statusMessage}</Typography>
+        <Typography color="error">{statusMessage}</Typography>
       </Box>
     </Modal>
   );

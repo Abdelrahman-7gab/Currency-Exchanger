@@ -7,6 +7,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import apiService from "../../services/APIservice";
 import SwapVertIcon from '@mui/icons-material/SwapVert';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import Graph from "../Graph/Graph";
 
 function Exchanger() {
@@ -99,6 +101,7 @@ function Exchanger() {
 
       {fromAmount != "" &&
         fromAmount > 0 &&
+        conversionRate != 0 &&
         fromCurrency != "" &&
         toCurrency != "" && (
           <div className="info">

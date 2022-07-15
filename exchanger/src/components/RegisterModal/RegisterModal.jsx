@@ -29,7 +29,7 @@ function RegisterModal({ open, handleClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await apiService.RegisterUser(email, password, userName);
+      await apiService.RegisterUser(email, userName,password);
       setStatusMessage("Registration successful");
     } catch (err) {
       console.log(err);
