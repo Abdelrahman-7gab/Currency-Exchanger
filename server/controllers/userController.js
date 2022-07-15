@@ -6,16 +6,15 @@ const User = require("../models/userModel");
 //@Route POST /user/register
 //@Access Public
 const registerUser = async (req, res) => {
-  console.log(req.body);
   const { name, email, password } = req.body;
   if (!name || !email || !password) {
-    return res.status(400).json({ msg: "Please enter all fields" });
+    return res.status(400).json({ message: "Please enter all fields" });
   }
 
   //check if user already exists
   const userExists = await User.findOne({ email });
   if (userExists) {
-    return res.status(400).json({ msg: "User already exists" });
+    return res.status(400).json({ message: "User already exists" });
   }
 
   //hash password

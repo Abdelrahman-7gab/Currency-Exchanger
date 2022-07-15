@@ -2,7 +2,7 @@ import React from "react";
 import "./exchanger.css";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import { currencies } from "./currencies";
+import currencies  from "./currencies";
 import { useState } from "react";
 import { useEffect } from "react";
 import apiService from "../../services/APIservice";

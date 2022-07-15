@@ -38,3 +38,15 @@
     display: grid;
     justify-items: center;
 }
+
+@media screen and (max-width: 550px){
+    .exchange-container{
+        min-width: 290px;
+        padding: 15px;
+    }
+
+    .from-container{
+        grid-template-columns: 25% auto;
+    }
+}
+    
