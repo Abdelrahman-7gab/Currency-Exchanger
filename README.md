@@ -5,6 +5,9 @@ a Mern Stack app that uses Flixer API to show latest currency exchange conversio
 run npm install on both the Server and the Frontend folder use npm start on the sever side 
 and Vite or npm start dev on the frontend to run the application. 
 ### make sure Redis Server instance is working on your machine before starting the server as the server uses Redis for caching the API.
+You Can Either use Redis on Linux, WSL on windows or if you want to run Redis on windows directly you can use this unoffical native port:
+https://github.com/zkteco-home/redis-windows
+which I have tested and works as expected. 
 
 ## Features
 Caching using Redis. 
