@@ -24,7 +24,7 @@ const createFavorite = async (req, res) => {
       fromCurrency,
       toCurrency,
     });
-    //send favorite without user Object
+
     res.status(201).json(newFavorite);
   } catch (err) {
     console.log(err);
