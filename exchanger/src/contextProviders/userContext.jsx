@@ -1,4 +1,6 @@
 import { createContext, useContext, useState } from "react";
+import { useEffect } from "react";
+import apiService from "../services/APIservice";
 
 const userContext = createContext();
 
@@ -14,7 +16,7 @@ export function UserLoginProvider({ children }) {
   };
 
   return (
-    <userContext.Provider value={{ loggedIn, setLoggedIn,logout }}>
+    <userContext.Provider value={{ loggedIn, setLoggedIn, logout }}>
       {children}
     </userContext.Provider>
   );

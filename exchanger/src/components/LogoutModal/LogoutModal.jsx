@@ -3,7 +3,8 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 import "./LogoutModal.css";
-import { useLogin } from "../../services/userContext";
+import { useLogin } from "../../contextProviders/userContext";
+import { useModal } from "../../contextProviders/modalContext";
 
 const Modalstyle = {
   position: "absolute",
@@ -17,12 +18,16 @@ const Modalstyle = {
   p: 4,
 };
 
-function LogoutModal({ open, handleClose}) {
-  const {logout} = useLogin();
+function LogoutModal() {
+  const { logout } = useLogin();
+  const { openLogoutModal, setOpenLogoutModal } = useModal();
+
   return (
     <Modal
-      open={open}
-      onClose={handleClose}
+      open={openLogoutModal}
+      onClose={(e) => {
+        setOpenLogoutModal(false);
+      }}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -34,7 +39,9 @@ function LogoutModal({ open, handleClose}) {
           <Button
             variant="contained"
             color="inherit"
-            onClick={handleClose}
+            onClick={(e) => {
+              setOpenLogoutModal(false);
+            }}
             className="logout-button"
             sx={{ color: "black" }}
           >
@@ -43,7 +50,7 @@ function LogoutModal({ open, handleClose}) {
           <Button
             variant="contained"
             color="warning"
-            onClick={logout}
+            onClick={(e) => logout()}
             className="logout-button"
           >
             Logout

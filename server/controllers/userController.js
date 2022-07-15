@@ -28,7 +28,7 @@ const registerUser = async (req, res) => {
     password: hashedPassword,
   });
   await newUser.save();
-  res.json({ msg: "User created" });
+  res.json({ message: "User created" });
 };
 
 //@Desc authenticate a user

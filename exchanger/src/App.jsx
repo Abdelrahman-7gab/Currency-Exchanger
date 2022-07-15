@@ -1,20 +1,18 @@
 import "./App.css";
 import Header from "./components/Header/Header";
 import Exchanger from "./components/Exchanger/Exchanger";
-import Footer from "./components/Footer/Footer";
-import { UserLoginProvider} from "./services/userContext";
+import { GlobalProvider } from "./contextProviders/globalContext";
 
 function App() {
   return (
-    <UserLoginProvider>
+    <GlobalProvider>
       <div className="App">
         <Header />
         <div className="main">
           <Exchanger />
         </div>
-        <Footer />
       </div>
-    </UserLoginProvider>
+    </GlobalProvider>
   );
 }
 

@@ -7,13 +7,19 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import LogoutModal from "../LogoutModal/LogoutModal";
 import { useState, useEffect } from "react";
-import { useLogin } from "../../services/userContext";
+import { useLogin } from "../../contextProviders/userContext";
+import { useModal } from "../../contextProviders/modalContext";
 
 function Header() {
-  const [openLoginModal, setOpenLoginModal] = useState(false);
-  const [openRegisterModal, setOpenRegisterModal] = useState(false);
-  const [openLogoutModal, setOpenLogoutModal] = useState(false);
-  const {loggedIn, setLoggedIn} = useLogin();
+  const {
+    openLoginModal,
+    setOpenLoginModal,
+    openRegisterModal,
+    setOpenRegisterModal,
+    openLogoutModal,
+    setOpenLogoutModal,
+  } = useModal();
+  const { loggedIn, setLoggedIn } = useLogin();
   const [userName, setUserName] = useState("");
 
   useEffect(() => {
@@ -28,16 +34,14 @@ function Header() {
   useEffect(() => {
     //close the logout modal if the user logs out
     if (!loggedIn) {
-      setUserName("");
       setOpenLogoutModal(false);
     }
-  }
-  , [loggedIn]);
+  }, [loggedIn]);
 
   const switchLoginToRegister = () => {
     setOpenLoginModal(false);
     setOpenRegisterModal(true);
-  }
+  };
 
   return (
     <header className="header-container">
@@ -71,19 +75,9 @@ function Header() {
         </ul>
       )}
 
-      <LoginModal
-        open={openLoginModal}
-        handleClose={(e) => setOpenLoginModal(false)}
-        openRegisterModal={switchLoginToRegister}
-      />
-      <RegisterModal
-        open={openRegisterModal}
-        handleClose={(e) => setOpenRegisterModal(false)}
-      />
-      <LogoutModal
-        open={openLogoutModal}
-        handleClose={(e) => setOpenLogoutModal(false)}
-      />
+      <LoginModal/>
+      <RegisterModal/>
+      <LogoutModal/>
     </header>
   );
 }

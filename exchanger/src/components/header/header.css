@@ -5,7 +5,7 @@ header{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 2.3rem;
+    font-size: 2.1rem;
     padding-left: 2rem;
     font-weight: 600; 
     font-family: 'Roboto', sans-serif;
@@ -36,12 +36,20 @@ header{
     cursor: pointer;
 }
 
-@media screen and (max-width: 550px){
+@media screen and (max-width: 600px){
     header{
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+        padding-left: 0.5rem;
+    }
+   
+    .logo{
+        max-height: 3.5rem;
+        margin-right: 0.3rem;
     }
 
     .refs{
         font-size: 0.8rem;
+        margin-right: 0.5rem;
+        column-gap: 7px;
     }
 }

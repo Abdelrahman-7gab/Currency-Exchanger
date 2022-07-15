@@ -7,6 +7,7 @@ import "./registerModal.css";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import apiService from "../../services/APIservice";
+import { useModal } from "../../contextProviders/modalContext";
 
 const Modalstyle = {
   position: "absolute",
@@ -20,11 +21,12 @@ const Modalstyle = {
   p: 4,
 };
 
-function RegisterModal({ open, handleClose }) {
+function RegisterModal() {
   const [statusMessage, setStatusMessage] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
+  const { openRegisterModal, setOpenRegisterModal } = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,8 +41,8 @@ function RegisterModal({ open, handleClose }) {
 
   return (
     <Modal
-      open={open}
-      onClose={handleClose}
+      open={openRegisterModal}
+      onClose={(e) => {setOpenRegisterModal(false)}}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -73,7 +75,7 @@ function RegisterModal({ open, handleClose }) {
           <div className="buttons-container">
             <Button
               variant="contained"
-              onClick={handleClose}
+              onClick={(e) => {setOpenRegisterModal(false)}}
               color="inherit"
               sx={{ color: "black" }}
             >

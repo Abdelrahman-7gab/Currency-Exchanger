@@ -1,8 +1,8 @@
 .App{
   min-height: 100vh;
-  width: 100vw;
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto 1fr;
+  width: auto;
 }
 
 .main{

@@ -6,6 +6,7 @@ import { useState } from "react";
 import "./loginModal.css";
 import Typography from "@mui/material/Typography";
 import apiService from "../../services/APIservice";
+import { useModal } from "../../contextProviders/modalContext";
 
 const Modalstyle = {
   position: "absolute",
@@ -19,19 +20,21 @@ const Modalstyle = {
   p: 4,
 };
 
-function LoginModal({ open, handleClose,openRegisterModal }) {
+function LoginModal() {
   const [statusMessage, setStatusMessage] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { openLoginModal, setOpenLoginModal, setOpenRegisterModal } =
+    useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res =await apiService.LoginUser(email, password);
-    //set the token in the local storage
+      const res = await apiService.LoginUser(email, password);
+      //set the token in the local storage
       localStorage.setItem("user", JSON.stringify(res.data));
       setStatusMessage("");
-      handleClose();
+      setOpenLoginModal(false);
     } catch (err) {
       console.log(err);
       setStatusMessage(err.response.data.message);
@@ -40,8 +43,10 @@ function LoginModal({ open, handleClose,openRegisterModal }) {
 
   return (
     <Modal
-      open={open}
-      onClose={handleClose}
+      open={openLoginModal}
+      onClose={(e) => {
+        false;
+      }}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -65,12 +70,21 @@ function LoginModal({ open, handleClose,openRegisterModal }) {
           />
 
           <Typography>
-            <Button onClick={openRegisterModal}>Create a new Account</Button>
+            <Button
+              onClick={(e) => {
+                setOpenLoginModal(false);
+                setOpenRegisterModal(true);
+              }}
+            >
+              Create a new Account
+            </Button>
           </Typography>
           <div className="buttons-container">
             <Button
               variant="contained"
-              onClick={handleClose}
+              onClick={(e) => {
+                setOpenLoginModal(false);
+              }}
               color="inherit"
               sx={{ color: "black" }}
             >

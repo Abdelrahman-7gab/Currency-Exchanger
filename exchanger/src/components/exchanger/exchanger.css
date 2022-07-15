@@ -1,52 +1,66 @@
-.exchange-container{
-    background-color: white;
-    height: 500px;
-    min-width: 320px;
-    width: 30vw;
-    padding: 30px;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    row-gap: 25px;
-    box-shadow: -12px 16px 35px 0px rgba(0, 0, 0, 0.6);
-    -webkit-box-shadow: -12px 16px 35px 0px rgba(0, 0, 0, 0.6);
-    -moz-box-shadow: -12px 16px 35px 0px rgba(0, 0, 0, 0.6);
+.full-page {
+  display: flex;
+  column-gap: 20px;
 }
 
-.inputs-container,.info{
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
-
+.exchange-container {
+  background-color: white;
+  height: 550px;
+  min-width: 320px;
+  width: 30vw;
+  padding: 30px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 25px;
+  box-shadow: -12px 16px 35px 0px rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: -12px 16px 35px 0px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: -12px 16px 35px 0px rgba(0, 0, 0, 0.6);
 }
 
-.from-container{
-    display: grid;
-    grid-template-columns: 20% auto;
+.inputs-container,
+.info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
 }
 
-.conversionRate{
-    font-size: 1.3em;
-    font-weight: bold;
-    display: grid;
-    align-content: center;
+.from-container {
+  display: grid;
+  grid-template-columns: 20% auto;
 }
 
-.status{
-    color:black;
-    margin: 0 auto;
-    display: grid;
-    justify-items: center;
+.conversionRate {
+  font-size: 1.3em;
+  font-weight: bold;
+  display: grid;
+  align-content: center;
 }
 
-@media screen and (max-width: 550px){
-    .exchange-container{
-        min-width: 290px;
-        padding: 15px;
+.status {
+  color: black;
+  margin: 0 auto;
+  display: grid;
+  justify-items: center;
+}
+
+@media screen and (max-width: 720px) {
+    .full-page{
+        flex-direction: column;
+        row-gap: 2rem;
+        align-items: center;
+        margin: 2rem 0;
     }
-
-    .from-container{
-        grid-template-columns: 25% auto;
-    }
 }
-    
+
+@media screen and (max-width: 600px) {
+  .exchange-container {
+    width: 50vw;
+    min-width: 250px;
+    padding: 15px;
+  }
+
+  .from-container {
+    grid-template-columns: 25% auto;
+  }
+}
