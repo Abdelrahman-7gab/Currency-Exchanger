@@ -2,8 +2,8 @@
 A Mern Stack app that uses Flixer API to show latest currency exchange conversion rates.
 
 ## How to Run the app.
-run npm install on both the Server and the exchanger (frontend) folder use command 'npm start' on the sever side 
-and command 'npm start dev' or 'vite' on the exchanger folder to run the both the frontend and the backend.
+run 'npm install' on both the Server and the exchanger (frontend) folders.
+use command 'npm start' on the sever side and command 'npm start dev' or 'vite' on the exchanger folder to run both the frontend and the backend.
 ### make sure Redis Server instance is working on your machine before starting the server as the server uses Redis for caching the API responses.
 You Can Either use Redis on Linux, use it on WSL on windows or if you want to run Redis on windows directly you can use this unoffical native port:
 https://github.com/zkteco-home/redis-windows
