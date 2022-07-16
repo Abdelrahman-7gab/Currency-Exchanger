@@ -1,10 +1,14 @@
 import axios from "axios";
 
 const apiService = {
-  refreshToken :async () => {
+  refreshToken: async () => {
     if (localStorage.getItem("user")) {
       axios.defaults.headers.common = {
         Authorization: JSON.parse(localStorage.getItem("user")).token,
+      };
+    } else {
+      axios.defaults.headers.common = {
+        Authorization: "",
       };
     }
   },
